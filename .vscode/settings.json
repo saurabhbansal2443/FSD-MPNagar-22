@@ -1,3 +1,4 @@
 {
-  "livePreview.defaultPreviewPath": "/HTML/FormPractise.html"
+  "livePreview.defaultPreviewPath": "/HTML/FormPractise.html",
+  "liveServer.settings.port": 5501
 }
