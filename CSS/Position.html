@@ -42,20 +42,19 @@
       }
       .red {
         background-color: red;
-        position: static;
+        /* position: static; */
       }
       .blue {
         background-color: blue;
-        /* position: relative; */
-        /* left: 100px; */
-        /* top: 90px; */
+        /* position: relative;
+        left: 100px;
+        top: 100px; */
       }
       .green {
         background-color: green;
-        /* position: absolute; */
-        /* opacity: 0.5; */
-        /* right: 100px;
-        top: 100px; */
+        /* position: absolute;
+        right: 100px;
+        top: 100px;  */
       }
       .black {
         background-color: black;
@@ -65,9 +64,13 @@
       }
       .pink {
         background-color: lightpink;
-        position: sticky;
+        /* position: sticky;
         left: 100px;
-        top: 100px;
+        top: 100px; */
+      }
+      /* Pseudo Classes  */
+      .pink:hover {
+        background-color: lightcoral;
       }
     </style>
   </head>
@@ -79,6 +82,6 @@
       <div class="child green"></div>
       <div class="child black"></div>
     </div>
-    <div style="height: 300vh; background-color: lightgreen;"></div>
+    <div style="height: 300vh; background-color: lightgreen"></div>
   </body>
 </html>
