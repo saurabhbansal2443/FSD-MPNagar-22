@@ -161,7 +161,78 @@
   height: 50vh;
   width: 100vw;
   border-top: 2px solid rgb(229, 9, 20);
-  border-radius:  50% / 10%;
+  border-radius: 50% / 10%;
+  box-shadow: inset 2px 35px 15px -25px #121b40;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  box-shadow: inset 2px 35px 15px -10px #121B40;
+.movies > p {
+  color: white;
+  font-size: 1rem;
+  font-weight: 900;
+  margin-left: 8%;
+}
+.movies {
+  height: 70%;
+  width: 80%;
+}
+.allMovies {
+  height: 90%;
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.movieCard {
+  height: 100%;
+  width: 15%;
+  background-image: url(https://occ-0-4344-2164.1.nflxso.net/dnm/api/v6/mAcAr9TxZIVbINe88xb3Teg5_OA/AAAABaBljvFdAV1SGGPNXCcLpojtQjNb4MKKevyP-yHCBfzIW1zsZ-8lMn0-MwNMua8X5VZ0yjjzrfAZ4QFqxDdAIcVxsnTAtj2JNIUSZt5IEgJ15eSk4YSmd0XZk0PBW_XNHsbL.webp?r=1c2);
+  background-position: center;
+  background-repeat: none;
+  background-size: contain;
+  position: relative;
+}
+.movieCard > span {
+  position: absolute;
+  bottom: 0;
+  left: -14px;
+  font-size: 4rem;
+  color: black;
+  font-weight: 900;
+  text-shadow:
+    -1px -1px white,
+    -1px -1px white,
+    -1px -1px white;
+}
+.infocard {
+  height: 100%;
+  width: 15%;
+  background-image: linear-gradient(
+    to right bottom,
+    #021127,
+    #0a1b43,
+    #28205c,
+    #4d1e70,
+    #77097c
+  );
+}
+.MoreReasons{
+   background-color: black;
+  height: 50vh;
+  width: 100vw;
+ 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.greyBox{
+  height: 25px;
+  width: 100%;
+  background-color: grey;
+}
+.greyBox:hover{
+   background-color: rgb(57, 53, 53);
+   margin-bottom: 30px;
 }
