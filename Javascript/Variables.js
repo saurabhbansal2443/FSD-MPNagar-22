@@ -122,6 +122,6 @@ function abc() {
   def();
 }
 abc();
-console.log(x);
+// console.log(x);
 console.log(a);
 console.log(b);
