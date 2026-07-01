@@ -123,13 +123,13 @@
 
 // console.log(ans);
 
-// Question 5 
+// Question 5
 
 const students = [
-  { name: 'Emily', grade: 'A' },
-  { name: 'Jack', grade: 'B' },
-  { name: 'Sophia', grade: 'A' },
-  { name: 'Danny', grade: 'C' }
+  { name: "Emily", grade: "A" },
+  { name: "Jack", grade: "B" },
+  { name: "Sophia", grade: "A" },
+  { name: "Danny", grade: "C" },
 ];
 /* Expected output:
 {
@@ -137,3 +137,4 @@ const students = [
   B: ['Jack'],
   C: ['Danny']
 }
+  */
