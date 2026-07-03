@@ -138,3 +138,14 @@ const students = [
   C: ['Danny']
 }
   */
+
+const ans = students.reduce(function (acc, currObj) {
+  if (acc[currObj.grade]) {
+    acc[currObj.grade].push(currObj.name);
+  } else {
+    acc[currObj.grade] = [currObj.name];
+  }
+  return acc;
+}, {});
+
+console.log(ans);
