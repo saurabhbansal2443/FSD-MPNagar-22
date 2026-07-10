@@ -17,6 +17,7 @@ let obj1 = {
 // console.log(obj1);
 // console.log(obj2);
 // Spread operator makes combination of shallow and deep copy
+
 let obj2 = { ...obj1 };
 obj2.name = "Ajay";
 obj2.address.city = "BHOPAL";

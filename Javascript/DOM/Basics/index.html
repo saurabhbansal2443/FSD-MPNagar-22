@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <p>I am p tag</p>
+      <img src="./image1.jpeg" alt="" />
+    </div>
+  </body>
+  <script>
+    const pTag = document.querySelector("p");
+    pTag.innerText = "I am changed through JS ";
+    pTag.style.color = "red";
+    // console.dir(pTag);
+
+    const imageTag = document.querySelector("img");
+    imageTag.addEventListener("click", changeImage);
+    let flag = true;
+    function changeImage() {
+      if (flag) {
+        imageTag.src = "./image2.jpeg";
+      } else {
+        imageTag.src = "./image1.jpeg";
+      }
+      flag = !flag;
+    }
+
+    // console.dir(imageTag);
+  </script>
+</html>
