@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .square {
+        height: 100px;
+        width: 100px;
+        background-color: lightblue;
+        margin: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <input id="inputTag" type="text" />
+    <button id="btn">Add</button>
+    <div class="container">
+      <!-- <div class="square"></div>
+      <div class="square"></div> -->
+    </div>
+  </body>
+  <script>
+    const inputTag = document.getElementById("inputTag");
+    const buttonTag = document.getElementById("btn");
+    const container = document.querySelector(".container");
+
+    buttonTag.addEventListener("click", function () {
+      //   console.log("Button Clicked");
+      //   console.dir(inputTag);
+      const numberOfBoxes = inputTag.value;
+      //   console.log(numberOfBoxes);
+      container.innerHTML = "";
+      for (let i = 1; i <= numberOfBoxes; i++) {
+        const box = document.createElement("div");
+        box.classList.add("square");
+        //   console.log(box);
+        container.appendChild(box);
+      }
+    });
+  </script>
+</html>
