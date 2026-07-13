@@ -23,10 +23,11 @@
   <body>
     <input id="inputTag" type="text" />
     <button id="btn">Add</button>
-    <select id="shapeOptions" name="" id="">
+    <select id="shapeOptions" name="">
       <option value="circle">Circle</option>
       <option value="square">Square</option>
     </select>
+    <input id="colorInput" type="color" />
     <div class="container">
       <!-- <div class="square"></div>
       <div class="circle"></div> -->
@@ -37,12 +38,13 @@
     const buttonTag = document.getElementById("btn");
     const container = document.querySelector(".container");
     const shapeOptionsInput = document.getElementById("shapeOptions");
-
+    const colorInput = document.getElementById("colorInput");
     buttonTag.addEventListener("click", function () {
       //   console.log("Button Clicked");
       //   console.dir(inputTag);
       const numberOfBoxes = inputTag.value;
       const shape = shapeOptionsInput.value;
+      const color = colorInput.value;
 
       //   console.log(shape);
       //   console.log(numberOfBoxes);
@@ -50,6 +52,7 @@
       for (let i = 1; i <= numberOfBoxes; i++) {
         const box = document.createElement("div");
         box.classList.add(shape);
+        box.style.backgroundColor = color;
         //   console.log(box);
         container.appendChild(box);
       }
