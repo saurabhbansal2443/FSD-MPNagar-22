@@ -58,7 +58,11 @@ addButton.addEventListener("click", function () {
     if (flag) {
       taskTag.setAttribute("contentEditable", false);
       editButton.setAttribute("fill", "black");
-      taskTag.style.textDecoration = "none";
+      if (taskStatusBtn.classList.contains("complete")) {
+        taskTag.style.textDecoration = "line-through";
+      } else {
+        taskTag.style.textDecoration = "none";
+      }
     } else {
       taskTag.setAttribute("contentEditable", true);
       editButton.setAttribute("fill", "red");
