@@ -83,6 +83,7 @@ addButton.addEventListener("click", function () {
       taskStatusBtn.classList.remove("incomplete");
       taskStatusBtn.classList.add("complete");
       taskTag.style.textDecoration = "line-through";
+      taskBox.style.order = 1;
     }
     taskStatusFlag = !taskStatusFlag;
   });
