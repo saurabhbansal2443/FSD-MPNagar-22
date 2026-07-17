@@ -49,6 +49,7 @@ addButton.addEventListener("click", function () {
   const deleteButton = taskBox.querySelector("#delete");
   const editButton = taskBox.querySelector("#edit");
   const taskTag = taskBox.querySelector("p");
+  const taskStatusBtn = taskBox.querySelector("#taskStatus");
   deleteButton.addEventListener("click", function () {
     taskContainer.removeChild(taskBox);
   });
@@ -65,6 +66,21 @@ addButton.addEventListener("click", function () {
       taskTag.style.textDecorationColor = "red";
     }
     flag = !flag;
+  });
+  let taskStatusFlag = false;
+  taskStatusBtn.addEventListener("click", function () {
+    console.dir(taskStatusBtn);
+    if (taskStatusFlag) {
+      taskStatusBtn.innerHTML = "Incomplete";
+      taskStatusBtn.classList.remove("complete");
+      taskStatusBtn.classList.add("incomplete");
+    } else {
+      taskStatusBtn.innerHTML = "Complete";
+      taskStatusBtn.classList.remove("incomplete");
+      taskStatusBtn.classList.add("complete");
+      taskTag.style.textDecoration = "line-through";
+    }
+    taskStatusFlag = !taskStatusFlag;
   });
 
   taskContainer.appendChild(taskBox);
