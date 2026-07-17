@@ -78,6 +78,8 @@ addButton.addEventListener("click", function () {
       taskStatusBtn.innerHTML = "Incomplete";
       taskStatusBtn.classList.remove("complete");
       taskStatusBtn.classList.add("incomplete");
+      taskTag.style.textDecoration = "none";
+      taskBox.style.order = -1;
     } else {
       taskStatusBtn.innerHTML = "Complete";
       taskStatusBtn.classList.remove("incomplete");
