@@ -60,4 +60,32 @@
 
 .task > p {
   margin-right: auto;
+  outline: none;
+}
+
+.taskOptions {
+  height: 100%;
+  width: 30%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.taskStatusbtn {
+  height: 70%;
+  width: 50%;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  font-size: 0.5rem;
+  font-weight: 700;
+  color: white;
+  margin-right: 4px;
+}
+.complete {
+  background-color: green;
+}
+
+.incomplete {
+  background-color: red;
 }
