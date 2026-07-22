@@ -4,7 +4,6 @@
   box-sizing: border-box;
 }
 
-
 nav {
   background-color: #c0e1d2;
   height: 10vh;
@@ -94,9 +93,16 @@ nav {
   overflow: hidden;
 }
 .taskText {
+  resize: none;
+  outline: none;
+  border: none;
   height: 100%;
   width: 80%;
   background-color: white;
+  padding: 10px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .priotityColors2 {
   height: 100%;
@@ -113,4 +119,7 @@ nav {
 }
 .hide {
   display: none;
+}
+.border{
+    border: 3px solid white;
 }
