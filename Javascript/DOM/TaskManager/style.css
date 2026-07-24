@@ -65,12 +65,14 @@ nav {
   border-radius: 10px;
   overflow: hidden;
 }
+
 .taskColor {
   height: 10%;
   width: 100%;
 }
 .ticketTaskContainer {
   /* background-color: blue; */
+  padding: 5px;
   position: relative;
   height: 90%;
   width: 100%;
@@ -120,6 +122,6 @@ nav {
 .hide {
   display: none;
 }
-.border{
-    border: 3px solid white;
+.border {
+  border: 3px solid white;
 }
