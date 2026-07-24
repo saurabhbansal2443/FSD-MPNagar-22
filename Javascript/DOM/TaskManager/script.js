@@ -2,6 +2,7 @@ const addButton = document.getElementById("add");
 const taskAdderContainer = document.querySelector(".taskAdder");
 const taskTextInput = document.querySelector(".taskText");
 const taskAdderColorsContainer = document.querySelector(".priotityColors2");
+const taskAdderColors = document.querySelectorAll(".color2");
 
 let selectedColor = "red";
 
@@ -16,7 +17,7 @@ taskTextInput.addEventListener("keydown", function (event) {
   const taskText = taskTextInput.value;
   console.log(taskText);
 });
-
+// applying event delegation over here
 taskAdderColorsContainer.addEventListener("click", function (event) {
   const selectedElement = event.target;
 
@@ -25,6 +26,8 @@ taskAdderColorsContainer.addEventListener("click", function (event) {
   }
   const newSelectedColor = selectedElement.classList[1];
   selectedColor = newSelectedColor;
+  taskAdderColors.forEach((element) => {
+    element.classList.remove("border");
+  });
   selectedElement.classList.add("border");
-  console.log(newSelectedColor);
 });
