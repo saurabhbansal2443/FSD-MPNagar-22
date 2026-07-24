@@ -23,6 +23,8 @@ taskTextInput.addEventListener("keydown", function (event) {
   const taskText = taskTextInput.value;
   taskTextInput.value = "";
 
+  if (taskText.trim().length == 0) return;
+
   hideTaskAdder();
 
   const taskObj = {
@@ -74,6 +76,12 @@ function createTicketAndAddTicketToUI(taskArray) {
             </svg>
           </div>
         </div>`;
+
+    const taskColorElement = ticketBox.querySelector(".taskColor");
+
+    taskColorElement.addEventListener("click", function () {
+      console.log("color container clicked");
+    });
 
     taskContainer.appendChild(ticketBox);
   });
