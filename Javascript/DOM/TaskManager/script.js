@@ -6,16 +6,32 @@ const taskAdderColors = document.querySelectorAll(".color2");
 
 let selectedColor = "red";
 
-addButton.addEventListener("click", function () {
+let taskArray = [];
+// [{ id: "1", task: "Hello", color: "red" }];
+
+function hideTaskAdder() {
   taskAdderContainer.classList.toggle("hide");
-});
+}
+
+addButton.addEventListener("click", hideTaskAdder);
 
 taskTextInput.addEventListener("keydown", function (event) {
   if (event.key != "Enter") {
     return;
   }
   const taskText = taskTextInput.value;
-  console.log(taskText);
+  taskTextInput.value = "";
+
+  hideTaskAdder();
+
+  const taskObj = {
+    id: Date.now(),
+    task: taskText,
+    color: selectedColor,
+  };
+  console.log(taskObj);
+  taskArray.push(taskObj);
+  createTicketAndAddTicketToUI(taskArray);
 });
 // applying event delegation over here
 taskAdderColorsContainer.addEventListener("click", function (event) {
@@ -31,3 +47,5 @@ taskAdderColorsContainer.addEventListener("click", function (event) {
   });
   selectedElement.classList.add("border");
 });
+
+function createTicketAndAddTicketToUI() {}
