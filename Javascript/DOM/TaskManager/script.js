@@ -5,6 +5,7 @@ const taskAdderColorsContainer = document.querySelector(".priotityColors2");
 const taskAdderColors = document.querySelectorAll(".color2");
 const taskContainer = document.querySelector(".taskContainer");
 
+let allColors = ["red", "blue", "green", "orange"];
 let selectedColor = "red";
 
 let taskArray = [];
@@ -80,7 +81,17 @@ function createTicketAndAddTicketToUI(taskArray) {
     const taskColorElement = ticketBox.querySelector(".taskColor");
 
     taskColorElement.addEventListener("click", function () {
-      console.log("color container clicked");
+      // console.log(taskColorElement, "color container clicked");
+      let currentColor = taskColorElement.classList[1];
+      let currentColorIndex = allColors.indexOf(currentColor);
+      let nextColor = allColors[(currentColorIndex + 1) % allColors.length];
+
+      console.log(nextColor);
+      // UI update
+      taskColorElement.classList.remove(currentColor);
+      taskColorElement.classList.add(nextColor);
+      // data layer
+      taskObj.color = nextColor;
     });
 
     taskContainer.appendChild(ticketBox);
