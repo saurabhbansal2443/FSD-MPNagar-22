@@ -4,11 +4,22 @@ const taskTextInput = document.querySelector(".taskText");
 const taskAdderColorsContainer = document.querySelector(".priotityColors2");
 const taskAdderColors = document.querySelectorAll(".color2");
 const taskContainer = document.querySelector(".taskContainer");
+const deleteButton = document.getElementById("delete");
 
 let allColors = ["red", "blue", "green", "orange"];
 let selectedColor = "red";
+let isDeleteActive = false;
 
 let taskArray = [];
+
+deleteButton.addEventListener("click", function () {
+  if (isDeleteActive) {
+    deleteButton.setAttribute("fill", "black");
+  } else {
+    deleteButton.setAttribute("fill", "red");
+  }
+  isDeleteActive = !isDeleteActive;
+});
 // [{ id: "1", task: "Hello", color: "red" }];
 
 function hideTaskAdder() {
@@ -33,9 +44,9 @@ taskTextInput.addEventListener("keydown", function (event) {
     task: taskText,
     color: selectedColor,
   };
-  console.log(taskObj);
+  // console.log(taskObj);
   taskArray.push(taskObj);
-  createTicketAndAddTicketToUI(taskArray);
+  createTicketAndAddTicketToUI();
 });
 // applying event delegation over here
 taskAdderColorsContainer.addEventListener("click", function (event) {
@@ -52,7 +63,7 @@ taskAdderColorsContainer.addEventListener("click", function (event) {
   selectedElement.classList.add("border");
 });
 
-function createTicketAndAddTicketToUI(taskArray) {
+function createTicketAndAddTicketToUI() {
   taskContainer.innerHTML = "";
   taskArray.forEach((taskObj) => {
     const { id, task, color } = taskObj;
@@ -85,13 +96,23 @@ function createTicketAndAddTicketToUI(taskArray) {
       let currentColor = taskColorElement.classList[1];
       let currentColorIndex = allColors.indexOf(currentColor);
       let nextColor = allColors[(currentColorIndex + 1) % allColors.length];
-
-      console.log(nextColor);
       // UI update
       taskColorElement.classList.remove(currentColor);
       taskColorElement.classList.add(nextColor);
       // data layer
       taskObj.color = nextColor;
+    });
+
+    ticketBox.addEventListener("dblclick", function () {
+      if (!isDeleteActive) return;
+      // Ui Layer
+      taskContainer.removeChild(ticketBox);
+      // Data Layer
+      let filteredArray = taskArray.filter(function (obj) {
+        return obj.id != taskObj.id;
+      });
+      taskArray = [...filteredArray];
+      
     });
 
     taskContainer.appendChild(ticketBox);
