@@ -23,13 +23,10 @@ allTicketButton.addEventListener("click", function () {
 // Filtering logic of tickets
 filterColorContainer.addEventListener("click", function (event) {
   const selectedElement = event.target;
-
   if (selectedElement.classList[0] !== "color") {
     return;
   }
-
   let color = selectedElement.classList[1];
-
   let filteredArray = taskArray.filter(function (obj) {
     return obj.color == color;
   });
@@ -49,6 +46,7 @@ deleteButton.addEventListener("click", function () {
 
 function hideTaskAdder() {
   taskAdderContainer.classList.toggle("hide");
+  taskTextInput.focus();
 }
 
 addButton.addEventListener("click", hideTaskAdder);
@@ -86,6 +84,7 @@ taskAdderColorsContainer.addEventListener("click", function (event) {
     element.classList.remove("border");
   });
   selectedElement.classList.add("border");
+  taskTextInput.focus();
 });
 
 function createTicketAndAddTicketToUI(ticketArray = taskArray) {
