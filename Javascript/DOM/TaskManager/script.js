@@ -12,6 +12,7 @@ let isDeleteActive = false;
 
 let taskArray = [];
 
+// Handling delete button flag and color of delete icon
 deleteButton.addEventListener("click", function () {
   if (isDeleteActive) {
     deleteButton.setAttribute("fill", "black");
@@ -63,14 +64,15 @@ taskAdderColorsContainer.addEventListener("click", function (event) {
   selectedElement.classList.add("border");
 });
 
-function createTicketAndAddTicketToUI() {
+function createTicketAndAddTicketToUI(ticketArray = taskArray) {
   taskContainer.innerHTML = "";
-  taskArray.forEach((taskObj) => {
+  ticketArray.forEach((taskObj) => {
     const { id, task, color } = taskObj;
-
+    // Creating ticket box
     const ticketBox = document.createElement("div");
+    // adding class to ticket box
     ticketBox.classList.add("ticket");
-
+    // Adding content inside ticket box (color strip , text , lock icon )
     ticketBox.innerHTML = ` <div class="taskColor ${color}"></div>
         <div class="ticketTaskContainer">
         <p>${task}</p>
@@ -88,7 +90,7 @@ function createTicketAndAddTicketToUI() {
             </svg>
           </div>
         </div>`;
-
+    // Color Strip functionality
     const taskColorElement = ticketBox.querySelector(".taskColor");
 
     taskColorElement.addEventListener("click", function () {
@@ -102,19 +104,17 @@ function createTicketAndAddTicketToUI() {
       // data layer
       taskObj.color = nextColor;
     });
-
+    // Ticket delete functionality
     ticketBox.addEventListener("dblclick", function () {
       if (!isDeleteActive) return;
       // Ui Layer
       taskContainer.removeChild(ticketBox);
       // Data Layer
-      let filteredArray = taskArray.filter(function (obj) {
+      taskArray = taskArray.filter(function (obj) {
         return obj.id != taskObj.id;
       });
-      taskArray = [...filteredArray];
-      
     });
-
+    // Adding ticker to UI
     taskContainer.appendChild(ticketBox);
   });
 }
