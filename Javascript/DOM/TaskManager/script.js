@@ -5,12 +5,36 @@ const taskAdderColorsContainer = document.querySelector(".priotityColors2");
 const taskAdderColors = document.querySelectorAll(".color2");
 const taskContainer = document.querySelector(".taskContainer");
 const deleteButton = document.getElementById("delete");
+const filterColorContainer = document.querySelector(".priotityColors");
+const allTicketButton = document.getElementById("all");
 
 let allColors = ["red", "blue", "green", "orange"];
 let selectedColor = "red";
 let isDeleteActive = false;
 
 let taskArray = [];
+
+// allTickets
+
+allTicketButton.addEventListener("click", function () {
+  createTicketAndAddTicketToUI();
+});
+
+// Filtering logic of tickets
+filterColorContainer.addEventListener("click", function (event) {
+  const selectedElement = event.target;
+
+  if (selectedElement.classList[0] !== "color") {
+    return;
+  }
+
+  let color = selectedElement.classList[1];
+
+  let filteredArray = taskArray.filter(function (obj) {
+    return obj.color == color;
+  });
+  createTicketAndAddTicketToUI(filteredArray);
+});
 
 // Handling delete button flag and color of delete icon
 deleteButton.addEventListener("click", function () {
