@@ -18,6 +18,15 @@ let selectedColor = "red";
 let isDeleteActive = false;
 
 let taskArray = [];
+const localStorageData = localStorage.getItem("taskArray");
+
+if (localStorageData) {
+  const parsedData = JSON.parse(localStorageData);
+
+  taskArray = parsedData;
+
+  createTicketAndAddTicketToUI(taskArray);
+}
 
 // allTickets
 
@@ -35,6 +44,7 @@ filterColorContainer.addEventListener("click", function (event) {
   let filteredArray = taskArray.filter(function (obj) {
     return obj.color == color;
   });
+
   createTicketAndAddTicketToUI(filteredArray);
 });
 
@@ -74,6 +84,8 @@ taskTextInput.addEventListener("keydown", function (event) {
   };
   // console.log(taskObj);
   taskArray.push(taskObj);
+  // Updating TaskArray
+  updateTaskArrayInLocalStorage(taskArray);
   createTicketAndAddTicketToUI();
 });
 // applying event delegation over here
@@ -124,6 +136,8 @@ function createTicketAndAddTicketToUI(ticketArray = taskArray) {
       taskColorElement.classList.add(nextColor);
       // data layer
       taskObj.color = nextColor;
+      // Updating TaskArray
+      updateTaskArrayInLocalStorage(taskArray);
     });
     // Ticket delete functionality
     ticketBox.addEventListener("dblclick", function () {
@@ -134,8 +148,10 @@ function createTicketAndAddTicketToUI(ticketArray = taskArray) {
       taskArray = taskArray.filter(function (obj) {
         return obj.id != taskObj.id;
       });
+      // Updating TaskArray
+      updateTaskArrayInLocalStorage(taskArray);
     });
-    // Edit Button functioanlity
+    // Edit Button functionality
     editButtonContainer.addEventListener("click", function () {
       if (isEdittable) {
         // go to lock State
@@ -144,6 +160,8 @@ function createTicketAndAddTicketToUI(ticketArray = taskArray) {
         const newText = taskText.innerHTML;
 
         taskObj.task = newText;
+        // Updating TaskArray
+        updateTaskArrayInLocalStorage(taskArray);
       } else {
         // go to unlock State
         editButtonContainer.innerHTML = unlockIcon;
@@ -155,4 +173,8 @@ function createTicketAndAddTicketToUI(ticketArray = taskArray) {
     // Adding ticker to UI
     taskContainer.appendChild(ticketBox);
   });
+}
+
+function updateTaskArrayInLocalStorage(array = taskArray) {
+  localStorage.setItem("taskArray", JSON.stringify(array));
 }
