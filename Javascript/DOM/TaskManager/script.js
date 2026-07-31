@@ -120,12 +120,12 @@ function createTicketAndAddTicketToUI(ticketArray = taskArray) {
             ${lockIcon}
           </div>
         </div>`;
-    // Color Strip functionality
+
     const taskColorElement = ticketBox.querySelector(".taskColor");
     const editButtonContainer = ticketBox.querySelector("#lockIconContainer");
     const taskText = ticketBox.querySelector("#pTag");
     let isEdittable = false;
-
+    // Color Strip functionality
     taskColorElement.addEventListener("click", function () {
       // console.log(taskColorElement, "color container clicked");
       let currentColor = taskColorElement.classList[1];
@@ -157,8 +157,8 @@ function createTicketAndAddTicketToUI(ticketArray = taskArray) {
         // go to lock State
         editButtonContainer.innerHTML = lockIcon;
         taskText.setAttribute("contentEditable", "false");
+        // Updating the data layer 
         const newText = taskText.innerHTML;
-
         taskObj.task = newText;
         // Updating TaskArray
         updateTaskArrayInLocalStorage(taskArray);
