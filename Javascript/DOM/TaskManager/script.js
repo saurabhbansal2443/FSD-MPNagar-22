@@ -8,6 +8,11 @@ const deleteButton = document.getElementById("delete");
 const filterColorContainer = document.querySelector(".priotityColors");
 const allTicketButton = document.getElementById("all");
 
+const unlockIcon =
+  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M7 10H20C20.5523 10 21 10.4477 21 11V21C21 21.5523 20.5523 22 20 22H4C3.44772 22 3 21.5523 3 21V11C3 10.4477 3.44772 10 4 10H5V9C5 5.13401 8.13401 2 12 2C14.7405 2 17.1131 3.5748 18.2624 5.86882L16.4731 6.76344C15.6522 5.12486 13.9575 4 12 4C9.23858 4 7 6.23858 7 9V10ZM5 12V20H19V12H5ZM10 15H14V17H10V15Z"></path></svg>';
+const lockIcon =
+  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M18 8H20C20.5523 8 21 8.44772 21 9V21C21 21.5523 20.5523 22 20 22H4C3.44772 22 3 21.5523 3 21V9C3 8.44772 3.44772 8 4 8H6V7C6 3.68629 8.68629 1 12 1C15.3137 1 18 3.68629 18 7V8ZM5 10V20H19V10H5ZM11 14H13V16H11V14ZM7 14H9V16H7V14ZM15 14H17V16H15V14ZM16 8V7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7V8H16Z"></path></svg>';
+
 let allColors = ["red", "blue", "green", "orange"];
 let selectedColor = "red";
 let isDeleteActive = false;
@@ -99,22 +104,14 @@ function createTicketAndAddTicketToUI(ticketArray = taskArray) {
     ticketBox.innerHTML = ` <div class="taskColor ${color}"></div>
         <div class="ticketTaskContainer">
         <p>${task}</p>
-          <div class="lockContainer">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              width="24"
-              height="24"
-              fill="currentColor"
-            >
-              <path
-                d="M6 10V20H19V10H6ZM18 8H20C20.5523 8 21 8.44772 21 9V21C21 21.5523 20.5523 22 20 22H4C3.44772 22 3 21.5523 3 21V9C3 8.44772 3.44772 8 4 8H6V7C6 3.68629 8.68629 1 12 1C15.3137 1 18 3.68629 18 7V8ZM16 8V7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7V8H16ZM7 11H9V13H7V11ZM7 14H9V16H7V14ZM7 17H9V19H7V17Z"
-              ></path>
-            </svg>
+          <div id="lockIconContainer" class="lockContainer">
+            ${lockIcon}
           </div>
         </div>`;
     // Color Strip functionality
     const taskColorElement = ticketBox.querySelector(".taskColor");
+    const editButtonContainer = ticketBox.querySelector("#lockIconContainer");
+    let isEdittable = false;
 
     taskColorElement.addEventListener("click", function () {
       // console.log(taskColorElement, "color container clicked");
@@ -136,6 +133,17 @@ function createTicketAndAddTicketToUI(ticketArray = taskArray) {
       taskArray = taskArray.filter(function (obj) {
         return obj.id != taskObj.id;
       });
+    });
+    // Edit Button functioanlity
+    editButtonContainer.addEventListener("click", function () {
+      if (isEdittable) {
+        // go to lock State
+        editButtonContainer.innerHTML = lockIcon;
+      } else {
+        // go to unlock State
+        editButtonContainer.innerHTML = unlockIcon;
+      }
+      isEdittable = !isEdittable;
     });
     // Adding ticker to UI
     taskContainer.appendChild(ticketBox);
