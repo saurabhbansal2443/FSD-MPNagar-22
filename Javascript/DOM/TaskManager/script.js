@@ -103,7 +103,7 @@ function createTicketAndAddTicketToUI(ticketArray = taskArray) {
     // Adding content inside ticket box (color strip , text , lock icon )
     ticketBox.innerHTML = ` <div class="taskColor ${color}"></div>
         <div class="ticketTaskContainer">
-        <p>${task}</p>
+        <p id="pTag" contentEditable="false" >${task}</p>
           <div id="lockIconContainer" class="lockContainer">
             ${lockIcon}
           </div>
@@ -111,6 +111,7 @@ function createTicketAndAddTicketToUI(ticketArray = taskArray) {
     // Color Strip functionality
     const taskColorElement = ticketBox.querySelector(".taskColor");
     const editButtonContainer = ticketBox.querySelector("#lockIconContainer");
+    const taskText = ticketBox.querySelector("#pTag");
     let isEdittable = false;
 
     taskColorElement.addEventListener("click", function () {
@@ -139,9 +140,15 @@ function createTicketAndAddTicketToUI(ticketArray = taskArray) {
       if (isEdittable) {
         // go to lock State
         editButtonContainer.innerHTML = lockIcon;
+        taskText.setAttribute("contentEditable", "false");
+        const newText = taskText.innerHTML;
+
+        taskObj.task = newText;
       } else {
         // go to unlock State
         editButtonContainer.innerHTML = unlockIcon;
+        taskText.setAttribute("contentEditable", "true");
+        taskText.focus();
       }
       isEdittable = !isEdittable;
     });
