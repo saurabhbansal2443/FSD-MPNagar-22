@@ -1,4 +1,4 @@
-//  Higher Order functionm --- Either it should be a callback function or if it returns a function it is called HOF
+//  Higher Order function --- Either it should be a callback function or if it returns a function it is called HOF
 
 //  forEach
 
