@@ -53,3 +53,11 @@ const ans = products.filter(function (currObj) {
 });
 
 console.log(ans)
+
+// Question 2 --  Calculate the final checkout price of a user's shopping cart, accounting for the quantity of each item
+
+const cart = [
+  { item: "Book", price: 15, quantity: 2 },
+  { item: "Pen", price: 2, quantity: 5 },
+  { item: "Bag", price: 40, quantity: 1 },
+];
