@@ -39,8 +39,6 @@
 
 // console.log(sum);
 
-
-
 // Question 1  -- make a array of products which are in stock and have price greater than 50
 
 const products = [
@@ -50,4 +48,8 @@ const products = [
   { name: "Monitor", price: 300, inStock: true },
 ];
 
+const ans = products.filter(function (currObj) {
+  return currObj.price > 50 && currObj.inStock == true;
+});
 
+console.log(ans)
