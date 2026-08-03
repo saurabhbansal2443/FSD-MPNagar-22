@@ -41,23 +41,45 @@
 
 // Question 1  -- make a array of products which are in stock and have price greater than 50
 
-const products = [
-  { name: "Laptop", price: 1200, inStock: true },
-  { name: "Mouse", price: 25, inStock: true },
-  { name: "Keyboard", price: 75, inStock: false },
-  { name: "Monitor", price: 300, inStock: true },
-];
+// const products = [
+//   { name: "Laptop", price: 1200, inStock: true },
+//   { name: "Mouse", price: 25, inStock: true },
+//   { name: "Keyboard", price: 75, inStock: false },
+//   { name: "Monitor", price: 300, inStock: true },
+// ];
 
-const ans = products.filter(function (currObj) {
-  return currObj.price > 50 && currObj.inStock == true;
-});
+// const ans = products.filter(function (currObj) {
+//   return currObj.price > 50 && currObj.inStock == true;
+// });
 
-console.log(ans)
+// console.log(ans)
 
-// Question 2 --  Calculate the final checkout price of a user's shopping cart, accounting for the quantity of each item
+// Question 2 --  Calculate the final checkout price of a user's shopping cart,
+// accounting for the quantity of each item
 
-const cart = [
-  { item: "Book", price: 15, quantity: 2 },
-  { item: "Pen", price: 2, quantity: 5 },
-  { item: "Bag", price: 40, quantity: 1 },
-];
+// const cart = [
+//   { item: "Book", price: 15, quantity: 2 },
+//   { item: "Pen", price: 2, quantity: 5 },
+//   { item: "Bag", price: 40, quantity: 1 },
+// ];
+
+// const ans = cart.reduce(function (acc, currObj) {
+//   return acc + currObj.price * currObj.quantity;
+// }, 0);
+
+// console.log(ans);
+
+
+// Question 3 -- 
+
+// const books = [
+//   { title: "Dune", genre: "Sci-Fi" },
+//   { title: "The Hobbit", genre: "Fantasy" },
+//   { title: "Neuromancer", genre: "Sci-Fi" },
+// ];
+
+// Expected Output
+//{
+//   "Sci-Fi": ["Dune", "Neuromancer"],
+//   "Fantasy": ["The Hobbit"]
+// }
