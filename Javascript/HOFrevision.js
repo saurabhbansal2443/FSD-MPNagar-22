@@ -69,8 +69,7 @@
 
 // console.log(ans);
 
-
-// Question 3 -- 
+// Question 3 --
 
 // const books = [
 //   { title: "Dune", genre: "Sci-Fi" },
@@ -78,8 +77,38 @@
 //   { title: "Neuromancer", genre: "Sci-Fi" },
 // ];
 
-// Expected Output
-//{
-//   "Sci-Fi": ["Dune", "Neuromancer"],
-//   "Fantasy": ["The Hobbit"]
-// }
+// // Expected Output
+// //{
+// //   "Sci-Fi": ["Dune", "Neuromancer"],
+// //   "Fantasy": ["The Hobbit"]
+// // }
+
+// const ans = books.reduce(function (acc, currObj) {
+//   const { genre, title } = currObj;
+//   if (acc[genre]) {
+//     acc[genre] = acc[genre].push(title);
+//   } else {
+//     acc[genre] = [title];
+//   }
+//   return acc;
+// }, {});
+
+// console.log(ans);
+
+
+
+// Question 5
+// const students = [
+//   { name: "Emily", grade: "A" },
+//   { name: "Jack", grade: "B" },
+//   { name: "Sophia", grade: "A" },
+//   { name: "Danny", grade: "C" },
+// ];
+/* Expected output:
+{
+  A: ['Emily', 'Sophia'],
+  B: ['Jack'],
+  C: ['Danny']
+}
+  */
+
