@@ -5,8 +5,9 @@ const taskContainer = document.querySelector(".taskContainer");
 const taskArray = [];
 //  [{task :"hello learn js",id:1}]
 
-addBtnTag.addEventListener("click", function () {
+function taskAdder() {
   const taskText = inputTag.value.trim();
+  inputTag.value = "";
   if (taskText.length == 0) {
     alert("Task is Empty");
     return;
@@ -17,9 +18,19 @@ addBtnTag.addEventListener("click", function () {
   };
   taskArray.push(taskObj);
   createTaskAndAddtoUI();
-});
+}
 
+addBtnTag.addEventListener("click", taskAdder);
+
+inputTag.addEventListener("keydown", function (event) {
+  let key = event.key;
+  if (key !== "Enter") {
+    return;
+  }
+  taskAdder();
+});
 function createTaskAndAddtoUI(arr = taskArray) {
+  taskContainer.innerHTML = "";
   arr.forEach(function (taskObj) {
     let { id, task } = taskObj;
     let taskEle = document.createElement("div");
