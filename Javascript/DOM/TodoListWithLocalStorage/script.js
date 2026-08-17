@@ -36,7 +36,7 @@ function createTaskAndAddtoUI(arr = taskArray) {
     let taskEle = document.createElement("div");
     taskEle.classList.add("task");
     taskEle.innerHTML = `
-     <p>${task}</p>
+     <p contentEditable="false" id="taskText" >${task}</p>
         <div class="taskOptions">
           <svg
             id="edit"
@@ -65,6 +65,9 @@ function createTaskAndAddtoUI(arr = taskArray) {
           </svg>`;
 
     const deleteIcon = taskEle.querySelector("#delete");
+    const editIcon = taskEle.querySelector("#edit");
+    const taskTextEle = taskEle.querySelector("#taskText");
+    let isTextEditable = false;
 
     deleteIcon.addEventListener("click", function () {
       // UI Layer
@@ -73,6 +76,22 @@ function createTaskAndAddtoUI(arr = taskArray) {
       taskArray = taskArray.filter(function (taskObj) {
         return taskObj.id !== id;
       });
+    });
+
+    editIcon.addEventListener("click", function () {
+     
+      if (isTextEditable) {
+        // UI layer
+        taskTextEle.setAttribute("contentEditable", "false");
+        editIcon.setAttribute("fill", "black");
+        //Data Layer
+        taskObj.task = taskTextEle.innerHTML;
+      } else {
+        // UI layer
+        taskTextEle.setAttribute("contentEditable", "true");
+        editIcon.setAttribute("fill", "red");
+      }
+      isTextEditable = !isTextEditable;
     });
 
     taskContainer.appendChild(taskEle);
