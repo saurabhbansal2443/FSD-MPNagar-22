@@ -1,9 +1,52 @@
 const inputTag = document.getElementById("input");
 const addBtnTag = document.getElementById("btn");
 const taskContainer = document.querySelector(".taskContainer");
+const themeButton = document.getElementById("themeButton");
+const inputContainer = document.querySelector(".inputContainer");
+
+let isLightTheme = true;
+if (localStorage.getItem("theme") != null) {
+  isLightTheme =
+    localStorage.getItem("theme") && JSON.parse(localStorage.getItem("theme"));
+}
+
+if (isLightTheme) {
+  themeButton.innerHTML = "Light";
+  themeButton.style.backgroundColor = "white";
+  themeButton.style.color = "black";
+  inputContainer.style.backgroundColor = "#e3f2fd";
+} else {
+  themeButton.innerHTML = "Dark";
+  themeButton.style.backgroundColor = "black";
+  themeButton.style.color = "white";
+  inputContainer.style.backgroundColor = "red";
+}
+
+themeButton.addEventListener("click", function () {
+  if (isLightTheme) {
+    themeButton.innerHTML = "Dark";
+    themeButton.style.backgroundColor = "black";
+    themeButton.style.color = "white";
+    inputContainer.style.backgroundColor = "red";
+  } else {
+    themeButton.innerHTML = "Light";
+    themeButton.style.backgroundColor = "white";
+    themeButton.style.color = "black";
+    inputContainer.style.backgroundColor = "#e3f2fd";
+  }
+  isLightTheme = !isLightTheme;
+  localStorage.setItem("theme", JSON.stringify(isLightTheme));
+});
 
 let taskArray = [];
 //  [{task :"hello learn js",id:1}]
+
+let taskDataLocal = localStorage.getItem("TaskData");
+
+if (taskDataLocal) {
+  taskArray = JSON.parse(taskDataLocal);
+  createTaskAndAddtoUI();
+}
 
 function taskAdder() {
   const taskText = inputTag.value.trim();
@@ -17,6 +60,8 @@ function taskAdder() {
     id: Date.now(),
   };
   taskArray.push(taskObj);
+  // update local storage
+  updateLocalStorage();
   createTaskAndAddtoUI();
 }
 
@@ -76,16 +121,19 @@ function createTaskAndAddtoUI(arr = taskArray) {
       taskArray = taskArray.filter(function (taskObj) {
         return taskObj.id !== id;
       });
+      // update local storage
+      updateLocalStorage();
     });
 
     editIcon.addEventListener("click", function () {
-     
       if (isTextEditable) {
         // UI layer
         taskTextEle.setAttribute("contentEditable", "false");
         editIcon.setAttribute("fill", "black");
         //Data Layer
         taskObj.task = taskTextEle.innerHTML;
+        // update local storage
+        updateLocalStorage();
       } else {
         // UI layer
         taskTextEle.setAttribute("contentEditable", "true");
@@ -96,4 +144,8 @@ function createTaskAndAddtoUI(arr = taskArray) {
 
     taskContainer.appendChild(taskEle);
   });
+}
+
+function updateLocalStorage() {
+  localStorage.setItem("TaskData", JSON.stringify(taskArray));
 }

@@ -3,6 +3,21 @@
   padding: 0;
   box-sizing: border-box;
 }
+#themeButton {
+  height: 50%;
+  width: 5%;
+  background-color: white;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  padding-left: 5px;
+  padding-right: 5px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: black;
+  margin-left: auto;
+  margin-right: 20px;
+}
 .inputContainer {
   background-color: #e3f2fd;
   height: 10vh;
@@ -13,6 +28,7 @@
 }
 
 #input {
+  margin-left: auto;
   height: 50%;
   width: 30%;
   border: none;
