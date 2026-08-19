@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .grandParent {
+        height: 300px;
+        width: 300px;
+        background-color: lightpink;
+      }
+      .parent {
+        height: 200px;
+        width: 200px;
+        background-color: lightskyblue;
+      }
+      .child {
+        height: 100px;
+        width: 100px;
+        background-color: lightgreen;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="grandParent">
+      <div class="parent">
+        <div class="child"></div>
+      </div>
+    </div>
+  </body>
+  <script>
+    // Event Bubbling
+    const grandParent = document.querySelector(".grandParent");
+    const parent = document.querySelector(".parent");
+    const child = document.querySelector(".child");
+
+    grandParent.addEventListener("click", function () {
+      console.log("GrandParent Clicked");
+    });
+    parent.addEventListener("click", function () {
+      console.log("Parent Clicked");
+      grandParent.removeChild(parent);
+    });
+    child.addEventListener("click", function (event) {
+      event.stopPropagation();
+      console.log("Child Clicked");
+      child.style.backgroundColor = "red";
+    });
+  </script>
+</html>
