@@ -37,12 +37,55 @@
 // 2) Add stuffing
 // 3) bake the bread
 
-let raw = "Bread";
+// let raw = "Bread";
+
+// function cutTheBread(cb) {
+//   setTimeout(function () {
+//     let cuttedBread = "Bread" + "cut";
+//     console.log(cuttedBread);
+//     cb();
+//   }, 2000);
+// }
+
+// function addStuffing(cb) {
+//   setTimeout(function () {
+//     let StuffedBread = "cuttedBread" + "Stuffing";
+//     console.log(StuffedBread);
+//      cb();
+//   }, 2000);
+// }
+
+// function baking(cb) {
+//   setTimeout(function () {
+//     let sandwich = "StuffedBread" + "Baking";
+//     console.log(sandwich);
+//   }, 2000);
+// }
+// // console.log("Start");
+// // cutTheBread(() => {
+// //   addStuffing(() => {
+// //     baking();
+// //   });
+// // });
+// // console.log("End");
+
+// //  cutTheBread(addStuffing(baking)) // wrong Syntax
+// //cutTheBread(()=>{addStuffing()})
+
+// cutTheBread(addStuffing())
+
+// console.log("Start");
+
+// function cb(){
+//   addStuffing(cb2)
+// }
+
+// cutTheBread(cb)
 
 function cutTheBread(cb) {
   setTimeout(function () {
-    let cuttedBread = "Bread" + "cut";
-    console.log(cuttedBread);
+    let bread = "Cutted Bread";
+    console.log(bread);
     cb();
   }, 2000);
 }
@@ -51,7 +94,7 @@ function addStuffing(cb) {
   setTimeout(function () {
     let StuffedBread = "cuttedBread" + "Stuffing";
     console.log(StuffedBread);
-     cb();
+    cb();
   }, 2000);
 }
 
@@ -59,25 +102,18 @@ function baking(cb) {
   setTimeout(function () {
     let sandwich = "StuffedBread" + "Baking";
     console.log(sandwich);
+    cb();
   }, 2000);
 }
-// console.log("Start");
-// cutTheBread(() => {
-//   addStuffing(() => {
-//     baking();
-//   });
-// });
-// console.log("End");
 
-//  cutTheBread(addStuffing(baking)) // wrong Syntax 
-//cutTheBread(()=>{addStuffing()})
-
-cutTheBread(addStuffing())
-
-console.log("Start"); 
-
-function cb(){
-  addStuffing(cb2)
+function readyAnnouncment() {
+  console.log("Sandwich Is ready ");
 }
 
-cutTheBread(cb)
+// cutTheBread(addStuffings(baking))
+
+cutTheBread(function () {
+  addStuffing(function () {
+    baking(readyAnnouncment);
+  });
+});
