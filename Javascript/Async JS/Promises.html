@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    // Promise -- Promise is a object which is used to handle async task it has 3 states --
+    // pending -- fullfilled - rejected
+
+    // A promise will be in pending state when either resolve or reject is not called
+    // if resolve is called -- it will be in fullfilled state
+    // if reject is called -- it is in rejected state
+
+    // let breadPromise = new Promise(function (resolve, reject) {
+    //   setTimeout(function () {
+    //     if (false) {
+    //       resolve("Bread Is cutted");
+    //     } else {
+    //       reject("Error Occuured in bread Cutting");
+    //     }
+    //   }, 2000);
+    // });
+
+    // console.log(breadPromise);
+
+    // function cutBread() {
+    //   let promise = new Promise(function (resolve, reject) {
+    //     setTimeout(function () {
+    //       if (false) {
+    //         resolve("Bread Is cutted");
+    //       } else {
+    //         reject("Error Occuured in bread Cutting");
+    //       }
+    //     }, 2000);
+    //   });
+
+    //   return promise;
+    // }
+
+    // function TicTacToePromise() {
+    //   return new Promise(function (resolve, reject) {
+    //     setTimeout(function () {
+    //       if (false) {
+    //         resolve("Kabhi nahi chalega ");
+    //       } else {
+    //         reject("Kaam Chori ke chakar me nahi bana ");
+    //       }
+    //     }, 2000);
+    //   });
+    // }
+
+    // console.log(TicTacToePromise());
+
+    function cutTheBread(raw) {
+      return new Promise(function (resolve, reject) {
+        setTimeout(function () {
+          if (raw) {
+            resolve("Cutted Bread");
+          } else {
+            reject("Reject of cutted the bread");
+          }
+        }, 2000);
+      });
+    }
+
+    function addStuffings(bread) {
+      return new Promise(function (resolve, reject) {
+        setTimeout(function () {
+          if (bread) {
+            resolve("Stuffed Bread");
+          } else {
+            reject("Reject of add stuffings");
+          }
+        }, 2000);
+      });
+    }
+
+    function bake(stuffed) {
+      return new Promise(function (resolve, reject) {
+        setTimeout(function () {
+          if (stuffed) {
+            resolve("Sandwich");
+          } else {
+            reject("Reject of bake");
+          }
+        }, 2000);
+      });
+    }
+
+    console.log("Start");
+    cutTheBread("Bread")
+      .then(function (data) {
+        console.log(data);
+        return addStuffings(data);
+      })
+      .then(function (data) {
+        console.log(data);
+        return bake(data);
+      })
+      .then(function (data) {
+        console.log(data);
+      })
+      .catch(function (err) {
+        console.log("Catch called", err);
+      })
+      .finally(function () {
+        console.log("Finally called");
+      });
+    console.log("End");
+  </script>
+</html>
