@@ -90,25 +90,39 @@
       });
     }
 
+    // console.log("Start");
+    // cutTheBread("Bread")
+    //   .then(function (data) {
+    //     console.log(data);
+    //     return addStuffings(data);
+    //   })
+    //   .then(function (data) {
+    //     console.log(data);
+    //     return bake(data);
+    //   })
+    //   .then(function (data) {
+    //     console.log(data);
+    //   })
+    //   .catch(function (err) {
+    //     console.log("Catch called", err);
+    //   })
+    //   .finally(function () {
+    //     console.log("Finally called");
+    //   });
+    // console.log("End");
+
+    // Async and await are two keywords which are used to resolve promises
+
+    async function makeSandwich() {
+      let cuttedBread = await cutTheBread("raw");
+      console.log(cuttedBread);
+      let stuffed = await addStuffings(cuttedBread);
+      console.log(stuffed);
+      let sandwich = await bake(cuttedBread);
+      console.log(sandwich);
+    }
     console.log("Start");
-    cutTheBread("Bread")
-      .then(function (data) {
-        console.log(data);
-        return addStuffings(data);
-      })
-      .then(function (data) {
-        console.log(data);
-        return bake(data);
-      })
-      .then(function (data) {
-        console.log(data);
-      })
-      .catch(function (err) {
-        console.log("Catch called", err);
-      })
-      .finally(function () {
-        console.log("Finally called");
-      });
+    makeSandwich();
     console.log("End");
   </script>
 </html>
