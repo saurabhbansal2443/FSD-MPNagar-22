@@ -114,12 +114,18 @@
     // Async and await are two keywords which are used to resolve promises
 
     async function makeSandwich() {
-      let cuttedBread = await cutTheBread("raw");
-      console.log(cuttedBread);
-      let stuffed = await addStuffings(cuttedBread);
-      console.log(stuffed);
-      let sandwich = await bake(cuttedBread);
-      console.log(sandwich);
+      try {
+        let cuttedBread = await cutTheBread("raw");
+        console.log(cuttedBread);
+        let stuffed = await addStuffings();
+        console.log(stuffed);
+        let sandwich = await bake(cuttedBread);
+        console.log(sandwich);
+      } catch (err) {
+        console.log("Err", err);
+      } finally {
+        console.log("Finally called in async await ");
+      }
     }
     console.log("Start");
     makeSandwich();
