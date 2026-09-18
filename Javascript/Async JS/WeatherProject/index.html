@@ -237,9 +237,9 @@
         <div class="logo">☁ WeatherNow</div>
 
         <div class="search">
-          <input type="text" placeholder="Search city..." />
+          <input id="cityInput" type="text" placeholder="Search city..." />
 
-          <button>Search</button>
+          <button id="searchBtn">Search</button>
         </div>
       </header>
 
@@ -287,7 +287,30 @@
     </div>
   </body>
   <script>
-    
+    // JSON.parse() -- .json()
+    let apiKey = "ed8c37818a944c29adf40311232510";
+    const inputTag = document.getElementById("cityInput");
+    const searchButton = document.getElementById("searchBtn");
+
+    searchButton.addEventListener("click", function () {
+      let city = inputTag.value;
+      inputTag.value = "";
+      getData(city);
+    });
+
+    async function getData(city) {
+      try {
+        let api = getApi(city);
+        let apiData = await fetch(api);
+        let data = await apiData.json();
+        // console.log(data);
+        updateUI(data);
+      } catch (err) {
+        alert(err);
+      }
+    }
+
+    function updateUI(data) {}
 
     function getApi(city) {
       return `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`;
