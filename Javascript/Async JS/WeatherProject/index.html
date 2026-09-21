@@ -246,7 +246,7 @@
       <!-- Main Weather -->
       <section class="main-weather">
         <div class="weather-info">
-          <div class="location">📍 Bhopal, India</div>
+          <div class="location">📍 Surat, India</div>
 
           <div class="date">Friday, September 18</div>
 
@@ -291,14 +291,13 @@
     </div>
   </body>
   <script>
+    getLocation();
     // JSON.parse() -- .json()
     let apiKey = "ed8c37818a944c29adf40311232510";
     const inputTag = document.getElementById("cityInput");
     const searchButton = document.getElementById("searchBtn");
     const mainWeather = document.querySelector(".main-weather");
     const weatherDetails = document.querySelector(".details");
-
-    getData("new delhi");
 
     searchButton.addEventListener("click", function () {
       let city = inputTag.value;
@@ -314,7 +313,7 @@
         console.log(data);
         updateUI(data);
       } catch (err) {
-        alert(err);
+        console.error(err);
       }
     }
 
@@ -368,6 +367,18 @@
 
     function getApi(city) {
       return `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`;
+    }
+
+    function getLocation() {
+      navigator.geolocation.getCurrentPosition(locationSuccess, error);
+    }
+
+    function locationSuccess(position) {
+      getData(`${position.coords.latitude},${position.coords.longitude}`);
+    }
+
+    function error() {
+      console.log("Sorry, no position available.");
     }
   </script>
 </html>
