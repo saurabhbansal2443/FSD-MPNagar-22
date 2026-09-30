@@ -42,8 +42,32 @@
 // // console.log(os.version())
 // // console.log(os.userInfo())
 
+import * as fs from "node:fs";
 
-import * as fs from 'node:fs';
+// Create a file and write a file
+// fs.writeFileSync("./a.txt", "Hello from nodejs");
+// Update a file
+// fs.writeFileSync("./a.txt", "Hello from nodejs which is updated now");
+// Read a file
+// let data = fs.readFileSync("./a.txt", { encoding: "utf-8" });
+// console.log(data);
+// Delete a file
+// fs.unlinkSync("./a.txt");
 
+// Create write and update a file,
+console.log("Start");
+fs.writeFile("./abc/def/index.js", "Hello from async data ", function () {
+  console.log("File is created ");
+});
+// Read File
+// fs.readFile("./b.txt", "Utf-8", function (err, data) {
+//   console.log(err, data);
+// });
+// Delete file
+// fs.unlink("./b.txt", function (err) {
+//   console.log(err);
+// });
+console.log("End");
 
+// fs.mkdirSync("./abc/def")
 
