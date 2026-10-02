@@ -69,5 +69,7 @@ fs.writeFile("./abc/def/index.js", "Hello from async data ", function () {
 // });
 console.log("End");
 
-// fs.mkdirSync("./abc/def")
+//  fs.mkdirSync("./abc/def")
 
+// fs.mkdirSync("./xyz")
+fs.mkdirSync("./xyz/mno");
