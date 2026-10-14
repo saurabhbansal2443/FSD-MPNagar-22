@@ -1,21 +1,38 @@
-
-import React from "react";
+import React, { useState } from "react";
 
 const App = () => {
+  const [task, setTask] = useState("");
+  const [taskArray, setTaskArray] = useState([]);
+  const inputChange = (event) => {
+    console.log(event.target.value);
+    setTask(event.target.value);
+  };
+  const addTask = () => {
+    if (task.trim().length == 0) {
+      alert("task is empty");
+      return;
+    }
+    let newTasks = [...taskArray, task.trim()];
+    setTaskArray(newTasks);
+    setTask("");
+  };
   return (
     <div style={style.root}>
       <div style={style.optionsContainer}>
         <input
+          onChange={inputChange}
           type="text"
           placeholder="Enter your task..."
           style={style.input}
         />
-        <button style={style.addButton}>Add</button>
+        <button onClick={addTask} style={style.addButton}>
+          Add
+        </button>
       </div>
-
+      {console.log(taskArray)}
       <div style={style.taskContainer}>
         <div style={style.task}>
-          <p>The task</p>
+          <p>{task}</p>
           <button style={style.deleteButton}>Delete</button>
         </div>
       </div>
