@@ -12,9 +12,14 @@ const App = () => {
       alert("task is empty");
       return;
     }
-    let newTasks = [...taskArray, task.trim()];
+    let newTasks = [...taskArray, { id: Date.now(), task: task.trim() }];
     setTaskArray(newTasks);
     setTask("");
+  };
+
+  const deleteTask = (id) => {
+    let filteredTask = taskArray.filter((taskObj) => taskObj.id != id);
+    setTaskArray(filteredTask);
   };
   return (
     <div style={style.root}>
@@ -30,12 +35,22 @@ const App = () => {
           Add
         </button>
       </div>
-      {console.log(taskArray)}
       <div style={style.taskContainer}>
-        {/* <div style={style.task}>
-          <p>{task}</p>
-          <button style={style.deleteButton}>Delete</button>
-        </div> */}
+        {taskArray.map((taskObj) => {
+          return (
+            <div key={taskObj.id} style={style.task}>
+              <p>{taskObj.task}</p>
+              <button
+                onClick={() => {
+                  deleteTask(taskObj.id);
+                }}
+                style={style.deleteButton}
+              >
+                Delete
+              </button>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
