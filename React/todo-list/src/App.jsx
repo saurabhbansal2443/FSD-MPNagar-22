@@ -12,7 +12,8 @@ const App = () => {
       alert("task is empty");
       return;
     }
-    let newTasks = [...taskArray, { id: Date.now(), task: task.trim() }];
+    let taskObj = { id: Date.now(), task: task.trim() }
+    let newTasks = [...taskArray, taskObj];
     setTaskArray(newTasks);
     setTask("");
   };
