@@ -20,6 +20,7 @@ const App = () => {
     <div style={style.root}>
       <div style={style.optionsContainer}>
         <input
+          value={task}
           onChange={inputChange}
           type="text"
           placeholder="Enter your task..."
@@ -31,10 +32,10 @@ const App = () => {
       </div>
       {console.log(taskArray)}
       <div style={style.taskContainer}>
-        <div style={style.task}>
+        {/* <div style={style.task}>
           <p>{task}</p>
           <button style={style.deleteButton}>Delete</button>
-        </div>
+        </div> */}
       </div>
     </div>
   );
