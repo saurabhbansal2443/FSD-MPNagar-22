@@ -4,7 +4,7 @@ const App = () => {
   const [task, setTask] = useState("");
   const [taskArray, setTaskArray] = useState([]);
   const inputChange = (event) => {
-    console.log(event.target.value);
+    console.log(event);
     setTask(event.target.value);
   };
   const addTask = () => {
@@ -12,10 +12,15 @@ const App = () => {
       alert("task is empty");
       return;
     }
-    let taskObj = { id: Date.now(), task: task.trim() }
+    let taskObj = { id: Date.now(), task: task.trim() };
     let newTasks = [...taskArray, taskObj];
     setTaskArray(newTasks);
     setTask("");
+  };
+
+  const keyDown = (event) => {
+    if (event.key != "Enter") return;
+    addTask();
   };
 
   const deleteTask = (id) => {
@@ -28,6 +33,7 @@ const App = () => {
         <input
           value={task}
           onChange={inputChange}
+          onKeyDown={keyDown}
           type="text"
           placeholder="Enter your task..."
           style={style.input}
