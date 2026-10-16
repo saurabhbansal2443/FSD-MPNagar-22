@@ -2,19 +2,27 @@ import React, { useState } from "react";
 
 const App = () => {
   const [task, setTask] = useState("");
-  const [taskArray, setTaskArray] = useState([]);
+  const [taskArray, setTaskArray] = useState(() => {
+    let localTask = localStorage.getItem("Tasks");
+    if (localTask) {
+      return JSON.parse(localTask);
+    } else {
+      return [];
+    }
+  });
+
   const inputChange = (event) => {
-    console.log(event);
     setTask(event.target.value);
   };
   const addTask = () => {
     if (task.trim().length == 0) {
-      alert("task is empty");
+      alert("Task is empty");
       return;
     }
     let taskObj = { id: Date.now(), task: task.trim() };
     let newTasks = [...taskArray, taskObj];
     setTaskArray(newTasks);
+    localStorage.setItem("Tasks", JSON.stringify(newTasks));
     setTask("");
   };
 
@@ -26,6 +34,7 @@ const App = () => {
   const deleteTask = (id) => {
     let filteredTask = taskArray.filter((taskObj) => taskObj.id != id);
     setTaskArray(filteredTask);
+    localStorage.setItem("Tasks", JSON.stringify(filteredTask));
   };
   return (
     <div style={style.root}>
