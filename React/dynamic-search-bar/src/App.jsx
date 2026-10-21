@@ -1,18 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 
 const App = () => {
+  const [query, setQuery] = useState("");
+  const changeInput = (event) => {
+    setQuery(event.target.value);
+  };
   return (
     <div style={style?.root}>
-      <input style={style?.input} type="text" />
+      <input
+        value={query}
+        onChange={changeInput}
+        style={style?.input}
+        type="text"
+      />
 
       <div style={style?.suggestion}>
-        <p>Shoes </p>
+        <p>{query} </p>
       </div>
     </div>
   );
 };
 
 export default App;
+
+function getApi(product) {
+  return `https://dummyjson.com/products/search?q=${product}`;
+}
 
 const style = {
   root: {
