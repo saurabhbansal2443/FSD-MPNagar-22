@@ -1,27 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 const App = () => {
   const [query, setQuery] = useState("");
   const [products, setProducts] = useState([]);
-
-  const changeInput = (event) => {
+  let timerId = useRef(null);
+  function onInputChnage(event) {
     setQuery(event.target.value);
-  };
-
-  async function getData() {
-    if (query.trim().length == 0) {
-      return;
-    }
-    let api = getApi(query);
-    let apiData = await fetch(api);
-    let data = await apiData.json();
-    setProducts(data?.products);
   }
-
+  async function getData() {
+    if (query.trim().length == 0) return;
+    console.log("GetData called for query", query);
+    let apiData = await fetch(getApi(query));
+    let data = await apiData.json();
+    setProducts(data.products);
+  }
   useEffect(
     function () {
-      getData();
-      console.log(":Effect called");
+      if (timerId.current) {
+        clearTimeout(timerId.current);
+      }
+      timerId.current = setTimeout(getData, 300);
     },
     [query],
   );
@@ -30,7 +28,7 @@ const App = () => {
     <div style={style?.root}>
       <input
         value={query}
-        onChange={changeInput}
+        onChange={onInputChnage}
         style={style?.input}
         type="text"
       />
