@@ -33,13 +33,14 @@ const App = () => {
         type="text"
       />
 
-      {products.map(function (pObj) {
-        return (
-          <div style={style?.suggestion}>
-            <p>{pObj.title}</p>
-          </div>
-        );
-      })}
+      {query.trim().length != 0 &&
+        products.map(function (pObj) {
+          return (
+            <div key={pObj.id} style={style?.suggestion}>
+              <p>{pObj.title}</p>
+            </div>
+          );
+        })}
     </div>
   );
 };
