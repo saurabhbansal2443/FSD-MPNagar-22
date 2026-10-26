@@ -1,11 +1,12 @@
-import React from 'react'
+import React from "react";
+import Home from "./Screens/Home";
 
 const App = () => {
   return (
     <div>
-      <h1>Hey i am react </h1>
+      <Home />
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
