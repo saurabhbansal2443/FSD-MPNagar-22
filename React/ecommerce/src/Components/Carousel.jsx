@@ -19,10 +19,18 @@ const Carousel = () => {
     }
   };
 
+  const handleLeft = () => {
+    if (index == 0) {
+      setIndex(ImageArray.length - 1);
+    } else {
+      setIndex(index - 1);
+    }
+  };
+
   return (
     <div className="h-[60vh] w-screen relative">
       <img className="w-full h-full" src={ImageArray[index]} alt="" />
-      <div className="bg-white absolute top-36">
+      <div onClick={handleLeft} className="bg-white absolute top-36">
         <ChevronLeft />
       </div>
       <div onClick={handleRight} className="bg-white absolute top-36 right-0">
