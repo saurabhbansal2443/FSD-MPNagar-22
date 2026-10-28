@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image1 from "./../Assets/Image1.webp";
 import Image2 from "./../Assets/Image2.webp";
 import Image3 from "./../Assets/Image3.webp";
@@ -10,6 +10,7 @@ const ImageArray = [Image1, Image2, Image3, Image4];
 
 const Carousel = () => {
   const [index, setIndex] = useState(0);
+  const timerRef = useRef(null);
 
   const handleRight = () => {
     setIndex((preIndex) => {
@@ -19,6 +20,7 @@ const Carousel = () => {
         return preIndex + 1;
       }
     });
+    addTimer();
   };
 
   const handleLeft = () => {
@@ -29,12 +31,27 @@ const Carousel = () => {
         return preIndex - 1;
       }
     });
+    addTimer();
   };
 
+  function addTimer() {
+    // This function is responsible to clear old timer and start a new one
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+    }
+    timerRef.current = setInterval(function () {
+      setIndex((preIndex) => {
+        if (preIndex == ImageArray.length - 1) {
+          return 0;
+        } else {
+          return preIndex + 1;
+        }
+      });
+    }, 3000);
+  }
+
   useEffect(function () {
-    setInterval(function () {
-      handleRight();
-    }, 1000);
+    addTimer();
   }, []);
 
   return (
