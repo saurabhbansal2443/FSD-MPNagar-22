@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image1 from "./../Assets/Image1.webp";
 import Image2 from "./../Assets/Image2.webp";
 import Image3 from "./../Assets/Image3.webp";
@@ -12,20 +12,30 @@ const Carousel = () => {
   const [index, setIndex] = useState(0);
 
   const handleRight = () => {
-    if (index == ImageArray.length - 1) {
-      setIndex(0);
-    } else {
-      setIndex(index + 1);
-    }
+    setIndex((preIndex) => {
+      if (preIndex == ImageArray.length - 1) {
+        return 0;
+      } else {
+        return preIndex + 1;
+      }
+    });
   };
 
   const handleLeft = () => {
-    if (index == 0) {
-      setIndex(ImageArray.length - 1);
-    } else {
-      setIndex(index - 1);
-    }
+    setIndex((preIndex) => {
+      if (preIndex == 0) {
+        return ImageArray.length - 1;
+      } else {
+        return preIndex - 1;
+      }
+    });
   };
+
+  useEffect(function () {
+    setInterval(function () {
+      handleRight();
+    }, 1000);
+  }, []);
 
   return (
     <div className="h-[60vh] w-screen relative">
