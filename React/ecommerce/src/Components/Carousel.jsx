@@ -10,12 +10,12 @@ const ImageArray = [Image1, Image2, Image3, Image4];
 
 const Carousel = () => {
   return (
-    <div className="h-[60vh] w-screen ">
+    <div className="h-[60vh] w-screen relative">
       <img className="w-full h-full" src={Image1} alt="" />
-      <div className="">
+      <div className="bg-white absolute top-36">
         <ChevronLeft />
       </div>
-      <div className="">
+      <div className="bg-white absolute top-36 right-0">
         <ChevronRight />
       </div>
     </div>
