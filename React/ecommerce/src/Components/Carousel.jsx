@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Image1 from "./../Assets/Image1.webp";
 import Image2 from "./../Assets/Image2.webp";
 import Image3 from "./../Assets/Image3.webp";
@@ -9,13 +9,23 @@ import ChevronLeft from "../Icons/ChevronLeft";
 const ImageArray = [Image1, Image2, Image3, Image4];
 
 const Carousel = () => {
+  const [index, setIndex] = useState(0);
+
+  const handleRight = () => {
+    if (index == ImageArray.length - 1) {
+      setIndex(0);
+    } else {
+      setIndex(index + 1);
+    }
+  };
+
   return (
     <div className="h-[60vh] w-screen relative">
-      <img className="w-full h-full" src={Image1} alt="" />
+      <img className="w-full h-full" src={ImageArray[index]} alt="" />
       <div className="bg-white absolute top-36">
         <ChevronLeft />
       </div>
-      <div className="bg-white absolute top-36 right-0">
+      <div onClick={handleRight} className="bg-white absolute top-36 right-0">
         <ChevronRight />
       </div>
     </div>
