@@ -34,6 +34,15 @@ const Carousel = () => {
     addTimer();
   };
 
+  const handleMouseEnter = () => {
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+    }
+  };
+  const handleMouseLeave = () => {
+    addTimer();
+  };
+
   function addTimer() {
     // This function is responsible to clear old timer and start a new one
     if (timerRef.current) {
@@ -55,7 +64,11 @@ const Carousel = () => {
   }, []);
 
   return (
-    <div className="h-[60vh] w-screen relative">
+    <div
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      className="h-[60vh] w-screen relative"
+    >
       <img className="w-full h-full" src={ImageArray[index]} alt="" />
       <div onClick={handleLeft} className="bg-white absolute top-36">
         <ChevronLeft />
