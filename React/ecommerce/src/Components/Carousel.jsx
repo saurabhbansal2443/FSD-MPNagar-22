@@ -43,6 +43,13 @@ const Carousel = () => {
     addTimer();
   };
 
+  const handleIndicatorClick = (idx) => {
+    setIndex(() => {
+      return idx;
+    });
+    addTimer();
+  };
+
   function addTimer() {
     // This function is responsible to clear old timer and start a new one
     if (timerRef.current) {
@@ -75,6 +82,21 @@ const Carousel = () => {
       </div>
       <div onClick={handleRight} className="bg-white absolute top-36 right-0">
         <ChevronRight />
+      </div>
+      <div className="bg-black flex  justify-evenly items-center absolute bottom-5 right-[46vw] h-3 w-20  opacity-35 rounded-md">
+        {ImageArray.map(function (image, idx) {
+          const selected = "h-2 w-2 rounded-xl border-1 border-white bg-white";
+          const notSelected = "h-2 w-2 rounded-xl border-1 border-white ";
+          return (
+            <div
+              onClick={() => {
+                handleIndicatorClick(idx);
+              }}
+              key={idx}
+              className={idx == index ? selected : notSelected}
+            ></div>
+          );
+        })}
       </div>
     </div>
   );
