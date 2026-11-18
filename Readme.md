@@ -7,3 +7,38 @@
 [Website Link](https://codingterminaltheyoutube.netlify.app/)
 <br>
 [Google Meet Link ](https://meet.google.com/tfq-hdob-bjp)
+
+<br>
+React Topics - 
+What is react ? 
+Why React is used ? 
+React Using CDN 
+React.createElement()
+React.render()
+Babel
+Pacakages - Vite , webpack 
+Vite Installation 
+
+Project 1 -- counter 
+state 
+useState
+
+Project 2 -- TodoList 
+localstorage 
+DOM
+Virtual Dom 
+React Fibers 
+Reconcilation
+
+Project -3 Dynamic Search Bar 
+UseEffect 
+UseRef
+Throttling 
+Debouncing
+EventListners in React
+Carousel Building
+Keys in React 
+Api calling in React 
+
+Project - 4 Ecommerce 
+Carousel Building
