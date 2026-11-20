@@ -3,11 +3,19 @@ import CategorySkeleton from "../Skeleton/CategorySkeleton";
 
 const HomeProductGrid = () => {
   const [categories, setCategories] = useState([]);
+  const [categoryLoading, setCategoryLoading] = useState(true);
 
   async function getData() {
-    let apiData = await fetch(`https://dummyjson.com/products/categories`);
-    let data = await apiData.json();
-    setCategories(data);
+    try {
+      setCategoryLoading(true);
+      let apiData = await fetch(`https://dummyjson.com/products/categories`);
+      let data = await apiData.json();
+      setCategories(data);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setCategoryLoading(false);
+    }
   }
 
   useEffect(function () {
@@ -16,7 +24,8 @@ const HomeProductGrid = () => {
 
   return (
     <div className="w-full px-6 py-5">
-      <div className="flex gap-4 overflow-x-auto whitespace-nowrap scrollbar-hide py-2">
+      {categoryLoading && <CategorySkeleton />}
+      <div className="flex gap-4 overflow-x-auto whitespace-nowrap scrollbar-hide">
         {categories.map(function (catgoryData) {
           return (
             <div
@@ -28,7 +37,6 @@ const HomeProductGrid = () => {
           );
         })}
       </div>
-      <CategorySkeleton />
     </div>
   );
 };
