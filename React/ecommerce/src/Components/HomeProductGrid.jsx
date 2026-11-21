@@ -22,6 +22,8 @@ const HomeProductGrid = () => {
     getData();
   }, []);
 
+
+
   return (
     <div className="w-full px-6 py-5">
       {categoryLoading ? (
