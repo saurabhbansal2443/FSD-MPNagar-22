@@ -2,6 +2,7 @@ import React from "react";
 import Carousel from "../Components/Carousel";
 import Navbar from "../Components/Navbar";
 import HomeProductGrid from "../Components/HomeProductGrid";
+import ProductGrid from "../Components/ProductGrid";
 
 const Home = () => {
   return (
@@ -9,6 +10,7 @@ const Home = () => {
       <Navbar />
       <Carousel />
       <HomeProductGrid />
+      <ProductGrid />
     </div>
   );
 };
