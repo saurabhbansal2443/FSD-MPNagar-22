@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import CategorySkeleton from "../Skeleton/CategorySkeleton";
+import ProductGrid from "./ProductGrid";
 
 const HomeProductGrid = () => {
   const [categories, setCategories] = useState([]);
   const [categoryLoading, setCategoryLoading] = useState(true);
+  const [productsData, setProductsData] = useState([]);
 
   async function getData() {
     try {
@@ -18,11 +20,20 @@ const HomeProductGrid = () => {
     }
   }
 
+  async function getData2() {
+    try {
+      let apiData = await fetch(`https://dummyjson.com/products`);
+      let data = await apiData.json();
+      setProductsData(data.products);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   useEffect(function () {
     getData();
+    getData2();
   }, []);
-
-
 
   return (
     <div className="w-full px-6 py-5">
@@ -42,6 +53,7 @@ const HomeProductGrid = () => {
           })}
         </div>
       )}
+      <ProductGrid data={productsData} />
     </div>
   );
 };
