@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import ProductCard from "./ProductCard";
+import ProductGridSkeleton from "../Skeleton/ProductGridSkeleton";
 
 const ProductGrid = ({ slug }) => {
   const [productsData, setProductsData] = useState([]);
+  const [loading, setLoading] = useState(true);
   async function getData() {
     try {
+      setLoading(true);
       let apiData = await fetch(
         slug
           ? `https://dummyjson.com/products/${slug}`
@@ -14,12 +17,18 @@ const ProductGrid = ({ slug }) => {
       setProductsData(data.products);
     } catch (err) {
       console.log(err);
+    } finally {
+      setLoading(false);
     }
   }
 
   useEffect(function () {
     getData();
   }, []);
+
+  if (loading) {
+    return <ProductGridSkeleton />;
+  }
   return (
     <div className="w-full px-6 py-8">
       {/* Heading */}
