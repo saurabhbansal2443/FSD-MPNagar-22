@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from "react";
 import ProductCard from "./ProductCard";
 
-const ProductGrid = () => {
+const ProductGrid = ({ slug }) => {
   const [productsData, setProductsData] = useState([]);
   async function getData() {
     try {
-      let apiData = await fetch(`https://dummyjson.com/products`);
+      let apiData = await fetch(
+        slug
+          ? `https://dummyjson.com/products/${slug}`
+          : `https://dummyjson.com/products`,
+      );
       let data = await apiData.json();
       setProductsData(data.products);
     } catch (err) {
@@ -21,9 +25,11 @@ const ProductGrid = () => {
       {/* Heading */}
       <div className="mb-6 flex items-center justify-between">
         <div>
-          <h2 className="text-2xl font-bold text-gray-900">
-            Trending Products
-          </h2>
+          {!slug && (
+            <h2 className="text-2xl font-bold text-gray-900">
+              Trending Products
+            </h2>
+          )}
 
           <p className="mt-1 text-sm text-gray-500">
             Explore our latest collection
