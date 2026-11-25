@@ -4,6 +4,7 @@ import Cart from "./Screens/Cart";
 import Wishlist from "./Screens/Wishlist";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Category from "./Screens/Category";
+import Pdp from "./Screens/Pdp";
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
           <Route path="/cart" element={<Cart />} />
           <Route path="/wishlist" element={<Wishlist />} />
           <Route path="/category/:slug" element={<Category />} />
+          <Route path="/product/:id" element={<Pdp />} />
         </Routes>
       </BrowserRouter>
     </div>

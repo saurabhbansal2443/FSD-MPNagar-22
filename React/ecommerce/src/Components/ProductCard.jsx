@@ -1,8 +1,9 @@
-
 import React from "react";
+import { Link } from "react-router-dom";
 
 const ProductCard = ({ data }) => {
   const {
+    id,
     title,
     description,
     category,
@@ -14,17 +15,17 @@ const ProductCard = ({ data }) => {
     thumbnail,
   } = data;
 
-  const discountedPrice = (
-    price -
-    (price * discountPercentage) / 100
-  ).toFixed(2);
+  const discountedPrice = (price - (price * discountPercentage) / 100).toFixed(
+    2,
+  );
 
   return (
-    <div className="group overflow-hidden rounded-xl border border-gray-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
-
+    <Link
+      to={`/product/${id}`}
+      className="group overflow-hidden rounded-xl border border-gray-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+    >
       {/* Product Image */}
       <div className="relative flex h-64 items-center justify-center overflow-hidden bg-gray-50 p-5">
-
         <img
           src={thumbnail}
           alt={title}
@@ -61,7 +62,6 @@ const ProductCard = ({ data }) => {
 
       {/* Product Details */}
       <div className="p-4">
-
         {/* Brand and Category */}
         <div className="mb-2 flex items-center justify-between gap-2">
           <span className="text-xs font-semibold uppercase tracking-wider text-gray-500">
@@ -85,17 +85,11 @@ const ProductCard = ({ data }) => {
 
         {/* Rating */}
         <div className="mb-4 flex items-center gap-1.5">
-          <span className="text-sm font-semibold text-gray-800">
-            {rating}
-          </span>
+          <span className="text-sm font-semibold text-gray-800">{rating}</span>
 
-          <span className="text-sm text-yellow-500">
-            ★★★★★
-          </span>
+          <span className="text-sm text-yellow-500">★★★★★</span>
 
-          <span className="text-xs text-gray-400">
-            Rating
-          </span>
+          <span className="text-xs text-gray-400">Rating</span>
         </div>
 
         {/* Price */}
@@ -104,9 +98,7 @@ const ProductCard = ({ data }) => {
             ${discountedPrice}
           </span>
 
-          <span className="text-sm text-gray-400 line-through">
-            ${price}
-          </span>
+          <span className="text-sm text-gray-400 line-through">${price}</span>
         </div>
 
         {/* Add to Cart */}
@@ -116,9 +108,8 @@ const ProductCard = ({ data }) => {
         >
           Add to Cart
         </button>
-
       </div>
-    </div>
+    </Link>
   );
 };
 
